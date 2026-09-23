@@ -1,6 +1,8 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: ['./src/**/*.{js,ts,jsx,tsx,mdx}'],
+  content: [
+    './src/**/*.{js,ts,jsx,tsx,mdx}',
+  ],
   darkMode: 'class',
   theme: {
     container: {
@@ -57,7 +59,7 @@ module.exports = {
         'metric-md': ['1.375rem', { lineHeight: '1', fontWeight: '700' }],
       },
       boxShadow: {
-        card: '0 1px 3px rgba(0,0,0,0.4), 0 1px 2px rgba(0,0,0,0.3)',
+        'card': '0 1px 3px rgba(0,0,0,0.4), 0 1px 2px rgba(0,0,0,0.3)',
         'card-hover': '0 8px 32px rgba(0,0,0,0.5)',
         'glow-primary': '0 0 20px rgba(110,231,183,0.2)',
         'glow-accent': '0 0 20px rgba(129,140,248,0.2)',
@@ -66,7 +68,7 @@ module.exports = {
         'fade-in': 'fadeIn 200ms ease forwards',
         'slide-up': 'slideUp 250ms ease forwards',
         'score-pulse': 'scorePulse 2s ease-in-out infinite',
-        shimmer: 'shimmer 1.5s ease-in-out infinite',
+        'shimmer': 'shimmer 1.5s ease-in-out infinite',
       },
     },
   },

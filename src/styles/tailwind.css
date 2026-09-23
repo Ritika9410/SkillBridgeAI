@@ -1,0 +1,189 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700;800&family=Geist+Mono:wght@400;500;600&display=swap');
+
+:root {
+  --background: #09090B;
+  --foreground: #FAFAFA;
+  --primary: #6EE7B7;
+  --primary-foreground: #052e16;
+  --secondary: #27272A;
+  --secondary-foreground: #A1A1AA;
+  --accent: #818CF8;
+  --accent-foreground: #EEF2FF;
+  --muted: #27272A;
+  --muted-foreground: #71717A;
+  --card: #18181B;
+  --card-foreground: #FAFAFA;
+  --border: #27272A;
+  --input: #27272A;
+  --ring: #6EE7B7;
+  --radius: 10px;
+  --font-sans: 'Geist', 'sans-serif';
+  --font-mono: 'Geist Mono', 'monospace';
+
+  --positive: #6EE7B7;
+  --positive-bg: rgba(110, 231, 183, 0.08);
+  --negative: #F87171;
+  --negative-bg: rgba(248, 113, 113, 0.08);
+  --warning: #FCD34D;
+  --warning-bg: rgba(252, 211, 77, 0.08);
+  --info: #818CF8;
+  --info-bg: rgba(129, 140, 248, 0.08);
+}
+
+@layer base {
+  * {
+    box-sizing: border-box;
+    border-color: var(--border);
+  }
+
+  body {
+    background-color: var(--background);
+    color: var(--foreground);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  h1, h2, h3, h4, h5, h6, p {
+    margin: 0;
+  }
+
+  input[type="number"] {
+    -moz-appearance: textfield;
+  }
+
+  input[type="number"]::-webkit-outer-spin-button,
+  input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+  }
+
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: var(--background);
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: var(--border);
+    border-radius: 3px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--muted-foreground);
+  }
+}
+
+@layer utilities {
+  .font-mono {
+    font-family: var(--font-mono);
+  }
+
+  .tabular-nums {
+    font-variant-numeric: tabular-nums;
+  }
+
+  .text-gradient-primary {
+    background: linear-gradient(135deg, #6EE7B7 0%, #818CF8 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .bg-grid-pattern {
+    background-image:
+      linear-gradient(rgba(110, 231, 183, 0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(110, 231, 183, 0.03) 1px, transparent 1px);
+    background-size: 32px 32px;
+  }
+
+  .glow-primary {
+    box-shadow: 0 0 20px rgba(110, 231, 183, 0.15), 0 0 40px rgba(110, 231, 183, 0.05);
+  }
+
+  .glow-accent {
+    box-shadow: 0 0 20px rgba(129, 140, 248, 0.15), 0 0 40px rgba(129, 140, 248, 0.05);
+  }
+
+  .card-hover {
+    transition: all 200ms ease;
+  }
+
+  .card-hover:hover {
+    border-color: rgba(110, 231, 183, 0.2);
+    transform: translateY(-1px);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+  }
+
+  .sidebar-transition {
+    transition: width 300ms ease, opacity 200ms ease;
+  }
+
+  .fade-in {
+    animation: fadeIn 200ms ease forwards;
+  }
+
+  .slide-up {
+    animation: slideUp 250ms ease forwards;
+  }
+
+  .score-pulse {
+    animation: scorePulse 2s ease-in-out infinite;
+  }
+
+  .upload-zone-active {
+    border-color: var(--primary);
+    background-color: var(--positive-bg);
+  }
+
+  .blob-primary {
+    background: radial-gradient(ellipse at center, rgba(110, 231, 183, 0.12) 0%, transparent 70%);
+    filter: blur(40px);
+  }
+
+  .blob-accent {
+    background: radial-gradient(ellipse at center, rgba(129, 140, 248, 0.1) 0%, transparent 70%);
+    filter: blur(40px);
+  }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes scorePulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.7; }
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+.skeleton-shimmer {
+  background: linear-gradient(
+    90deg,
+    var(--muted) 0%,
+    rgba(63, 63, 70, 0.8) 50%,
+    var(--muted) 100%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.5s ease-in-out infinite;
+}
