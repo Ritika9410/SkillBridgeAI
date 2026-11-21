@@ -1,6 +1,8 @@
 # Node modules
 node_modules/
 package-lock.json
+.npm-cache/
+tmp/
 
 # Next.js build output
 .next/
@@ -14,6 +16,10 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 pnpm-debug.log*
+
+# Local environment files may contain secrets
+.env*
+!.env.example
 
 # OS-specific files
 .DS_Store

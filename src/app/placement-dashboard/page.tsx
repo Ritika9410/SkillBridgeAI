@@ -1,11 +1,14 @@
 import React from 'react';
-import AppLayout from '@/components/AppLayout';
-import DashboardHeader from './components/DashboardHeader';
-import ReadinessBentoGrid from './components/ReadinessBentoGrid';
-import ChartsRow from './components/ChartsRow';
-import BottomRow from './components/BottomRow';
+import AppLayout from '@/frontend/components/AppLayout';
+import DashboardHeader from '@/frontend/features/placement-dashboard/components/DashboardHeader';
+import ReadinessBentoGrid from '@/frontend/features/placement-dashboard/components/ReadinessBentoGrid';
+import ChartsRow from '@/frontend/features/placement-dashboard/components/ChartsRow';
+import BottomRow from '@/frontend/features/placement-dashboard/components/BottomRow';
+import CareerRecommendations from '@/frontend/features/placement-dashboard/components/CareerRecommendations';
+import { requireSessionUser } from '@/server/auth';
 
-export default function PlacementDashboardPage() {
+export default async function PlacementDashboardPage() {
+  await requireSessionUser();
   return (
     <AppLayout activePath="/placement-dashboard">
       <div className="min-h-screen bg-background">
@@ -13,6 +16,7 @@ export default function PlacementDashboardPage() {
           <DashboardHeader />
           <ReadinessBentoGrid />
           <ChartsRow />
+          <CareerRecommendations />
           <BottomRow />
         </div>
       </div>

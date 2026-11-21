@@ -1,7 +1,9 @@
-import AppLayout from '@/components/AppLayout';
-import ResumeAnalyzerScreen from './components/ResumeAnalyzerScreen';
+import AppLayout from '@/frontend/components/AppLayout';
+import ResumeAnalyzerScreen from '@/frontend/features/resume-analyzer/components/ResumeAnalyzerScreen';
+import { requireSessionUser } from '@/server/auth';
 
-export default function ResumeAnalyzerPage() {
+export default async function ResumeAnalyzerPage() {
+  await requireSessionUser();
   return (
     <AppLayout activePath="/resume-analyzer">
       <ResumeAnalyzerScreen />
