@@ -4,6 +4,7 @@ import { getSessionUser } from '@/server/auth';
 import { boundedInteger, generateGeminiJson, isRecord } from '@/server/gemini';
 import { getDatabase } from '@/server/mongodb';
 import type { InterviewQuestion, InterviewSession, ResumeAnalysisResult, StudentProfile } from '@/shared/types/analysisTypes';
+import { isSameOrigin } from '@/server/request-origin';
 
 export const runtime = 'nodejs';
 type StoredInterview = InterviewSession & { userId: string };
@@ -107,9 +108,4 @@ export async function PATCH(request: Request) {
     console.error('Interview answer evaluation failed:', error instanceof Error ? error.name : 'UnknownError');
     return NextResponse.json({ error: error instanceof Error ? error.message : 'Could not evaluate your answer.' }, { status: 502 });
   }
-}
-
-function isSameOrigin(request: Request) {
-  const origin = request.headers.get('origin');
-  return !origin || origin === new URL(request.url).origin;
 }

@@ -4,6 +4,7 @@ import { getSessionUser } from '@/server/auth';
 import { getDatabase } from '@/server/mongodb';
 import { boundedInteger, generateGeminiJson, isRecord } from '@/server/gemini';
 import type { ResumeAnalysisResult, RoadmapPlan, RoadmapTask, StudentProfile } from '@/shared/types/analysisTypes';
+import { isSameOrigin } from '@/server/request-origin';
 
 export const runtime = 'nodejs';
 
@@ -88,9 +89,4 @@ export async function PATCH(request: Request) {
     console.error('Roadmap task update failed:', error instanceof Error ? error.name : 'UnknownError');
     return NextResponse.json({ error: 'Could not update that roadmap task.' }, { status: 503 });
   }
-}
-
-function isSameOrigin(request: Request) {
-  const origin = request.headers.get('origin');
-  return !origin || origin === new URL(request.url).origin;
 }

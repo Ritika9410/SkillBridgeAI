@@ -10,6 +10,7 @@ import type {
   ResumeSuggestion,
   StudentProfile,
 } from '@/shared/types/analysisTypes';
+import { isSameOrigin } from '@/server/request-origin';
 
 const maxFileSize = 5 * 1024 * 1024;
 const maxResumeChars = 30000;
@@ -32,8 +33,7 @@ type PreviousRoleAssessment = Pick<ResumeAnalysisResult, 'matchedKeywords' | 'mi
 
 export async function POST(request: Request) {
   try {
-    const origin = request.headers.get('origin');
-    if (origin && origin !== new URL(request.url).origin) {
+    if (!isSameOrigin(request)) {
       return NextResponse.json({ error: 'Request was rejected.' }, { status: 403 });
     }
     const user = await getSessionUser();

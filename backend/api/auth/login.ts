@@ -8,6 +8,7 @@ import {
 } from '@/server/auth';
 import { getDatabase } from '@/server/mongodb';
 import { getDatabaseSetupMessage, getSafeDatabaseErrorLabel } from '@/server/database-error';
+import { isSameOrigin } from '@/server/request-origin';
 
 export const runtime = 'nodejs';
 
@@ -70,9 +71,4 @@ export async function POST(request: Request) {
       { status: 503 }
     );
   }
-}
-
-function isSameOrigin(request: Request) {
-  const origin = request.headers.get('origin');
-  return !origin || origin === new URL(request.url).origin;
 }

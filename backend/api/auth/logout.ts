@@ -1,9 +1,9 @@
 import { NextResponse } from 'next/server';
 import { sessionCookieName } from '@/server/auth';
+import { isSameOrigin } from '@/server/request-origin';
 
 export async function POST(request: Request) {
-  const origin = request.headers.get('origin');
-  if (origin && origin !== new URL(request.url).origin) {
+  if (!isSameOrigin(request)) {
     return NextResponse.json({ error: 'Request was rejected.' }, { status: 403 });
   }
   const response = NextResponse.json({ success: true });

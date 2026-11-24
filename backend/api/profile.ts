@@ -2,6 +2,7 @@ import { NextResponse } from 'next/server';
 import { getSessionUser } from '@/server/auth';
 import { getDatabase } from '@/server/mongodb';
 import { getDatabaseSetupMessage } from '@/server/database-error';
+import { isSameOrigin } from '@/server/request-origin';
 import { emptyStudentProfile } from '@/shared/profileUtils';
 import type { StudentProfile } from '@/shared/types/analysisTypes';
 
@@ -102,9 +103,4 @@ function safeUrl(value: unknown) {
 
 function isRecord(value: unknown): value is Record<string, unknown> {
   return Boolean(value && typeof value === 'object' && !Array.isArray(value));
-}
-
-function isSameOrigin(request: Request) {
-  const origin = request.headers.get('origin');
-  return !origin || origin === new URL(request.url).origin;
 }
