@@ -7,7 +7,7 @@ import {
   verifyPassword,
 } from '@/server/auth';
 import { getDatabase } from '@/server/mongodb';
-import { getDatabaseSetupMessage } from '@/server/database-error';
+import { getDatabaseSetupMessage, getSafeDatabaseErrorLabel } from '@/server/database-error';
 
 export const runtime = 'nodejs';
 
@@ -62,7 +62,7 @@ export async function POST(request: Request) {
     });
     return response;
   } catch (error) {
-    console.error('Account login failed:', error instanceof Error ? error.name : 'UnknownError');
+    console.error('Account login failed:', getSafeDatabaseErrorLabel(error));
     return NextResponse.json(
       {
         error: getDatabaseSetupMessage(error),

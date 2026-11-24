@@ -114,7 +114,7 @@ export default function Sidebar({ activePath }: SidebarProps) {
         <AppLogo size={32} />
         {!collapsed && (
           <span className="font-bold text-base tracking-tight text-foreground">
-            Skillapp<span className="text-primary">AI</span>
+            SkillBridge<span className="text-primary">AI</span>
           </span>
         )}
       </div>

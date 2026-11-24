@@ -8,7 +8,7 @@ import {
   sessionSecretIsConfigured,
 } from '@/server/auth';
 import { getDatabase } from '@/server/mongodb';
-import { getDatabaseSetupMessage } from '@/server/database-error';
+import { getDatabaseSetupMessage, getSafeDatabaseErrorLabel } from '@/server/database-error';
 
 export const runtime = 'nodejs';
 
@@ -76,7 +76,7 @@ export async function POST(request: Request) {
         { status: 409 }
       );
     }
-    console.error('Account registration failed:', getSafeErrorName(error));
+    console.error('Account registration failed:', getSafeDatabaseErrorLabel(error));
     return NextResponse.json({ error: getDatabaseSetupMessage(error) }, { status: 503 });
   }
 }
@@ -101,6 +101,3 @@ function isSameOrigin(request: Request) {
   return !origin || origin === new URL(request.url).origin;
 }
 
-function getSafeErrorName(error: unknown) {
-  return error instanceof Error ? error.name : 'UnknownError';
-}

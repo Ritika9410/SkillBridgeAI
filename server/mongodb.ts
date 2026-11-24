@@ -9,7 +9,7 @@ export async function getDatabase(): Promise<Db> {
   if (!uri) throw new Error('MongoDB is not configured. Add MONGODB_URI to .env.local.');
 
   if (!globalForMongo.mongoClientPromise) {
-    const client = new MongoClient(uri, { serverSelectionTimeoutMS: 8000 });
+    const client = new MongoClient(uri, { serverSelectionTimeoutMS: 8000, family: 4 });
     globalForMongo.mongoClientPromise = client.connect().catch(async (error: unknown) => {
       globalForMongo.mongoClientPromise = undefined;
       await client.close().catch(() => undefined);
